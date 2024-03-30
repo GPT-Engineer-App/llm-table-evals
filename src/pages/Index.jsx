@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Heading, Table, Thead, Tbody, Tr, Th, Td, Input, IconButton, useToast } from "@chakra-ui/react";
+import { Box, Button, Heading, Table, Thead, Tbody, Tr, Th, Td, Input, Select, IconButton, useToast } from "@chakra-ui/react";
 import { FaPlus, FaTrash, FaSignOutAlt } from "react-icons/fa";
 
 const Index = () => {
@@ -73,16 +73,11 @@ const Index = () => {
                     {evaluation} <IconButton icon={<FaTrash />} size="sm" onClick={() => handleRemoveEval(index, evaluationIndex)} />
                   </Box>
                 ))}
-                <Input
-                  placeholder="Add eval"
-                  size="sm"
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      handleAddEval(index, e.target.value);
-                      e.target.value = "";
-                    }
-                  }}
-                />
+                <Select placeholder="Select eval" size="sm" onChange={(e) => handleAddEval(index, e.target.value)}>
+                  <option value="positive">Positive</option>
+                  <option value="neutral">Neutral</option>
+                  <option value="negative">Negative</option>
+                </Select>
               </Td>
               <Td>
                 <IconButton icon={<FaTrash />} onClick={() => handleDeletePrompt(index)} />
